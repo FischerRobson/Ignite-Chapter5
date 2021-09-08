@@ -14,7 +14,7 @@ export default function Home() {
       return;
     }
 
-    const res = await fetch(`http://localhost:3333/products?q=${search}`)
+    const res = await fetch(`http://localhost:3333/products?q=${search}`);
     const data = await res.json();
 
     setResults(data);
