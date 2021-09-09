@@ -2,10 +2,15 @@ import { useMemo } from "react"
 import { ProductItem } from "./ProductItem"
 
 interface SearchResultProps {
-  results: Array<{ id: number, price: number, title: string }>
+  results: Array<{
+    id: number,
+    price: number,
+    title: string
+  }>;
+  onAddToWishList: (id: number) => void;
 }
 
-export function SearchResults({ results }: SearchResultProps) {
+export function SearchResults({ results, onAddToWishList }: SearchResultProps) {
 
   // useMemo: cálculos pesados, igualdade referencial (informação repassada ao componente filho) 
   const totalPrice = useMemo(() => {
@@ -20,7 +25,11 @@ export function SearchResults({ results }: SearchResultProps) {
 
       {results.map(product => {
         return (
-          <ProductItem product={product} />
+          <ProductItem
+            key={product.id}
+            onAddToWishList={onAddToWishList}
+            product={product}
+          />
         )
       })}
     </div>
