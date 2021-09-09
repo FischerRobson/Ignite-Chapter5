@@ -3,21 +3,23 @@ import { ProductItem } from "./ProductItem"
 
 interface SearchResultProps {
   results: Array<{
-    id: number,
-    price: number,
-    title: string
+    id: number;
+    price: number;
+    title: string;
+    priceFormatted: string;
   }>;
+  totalPrice: number;
   onAddToWishList: (id: number) => void;
 }
 
-export function SearchResults({ results, onAddToWishList }: SearchResultProps) {
+export function SearchResults({ results, onAddToWishList, totalPrice }: SearchResultProps) {
 
   // useMemo: cálculos pesados, igualdade referencial (informação repassada ao componente filho) 
-  const totalPrice = useMemo(() => {
-    return results.reduce((total, product) => {
-      return total + product.price;
-    }, 0);
-  }, [results]);
+  // const totalPrice = useMemo(() => {
+  //   return results.reduce((total, product) => {
+  //     return total + product.price;
+  //   }, 0);
+  // }, [results]);
 
   return (
     <div>
