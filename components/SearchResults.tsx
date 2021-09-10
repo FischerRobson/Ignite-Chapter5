@@ -1,5 +1,4 @@
-import { useMemo } from "react"
-import { ProductItem } from "./ProductItem"
+import { ProductItem } from "./ProductItem";
 
 interface SearchResultProps {
   results: Array<{

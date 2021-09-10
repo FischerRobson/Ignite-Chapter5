@@ -9,7 +9,10 @@ type Results = {
 export default function Home() {
 
   const [search, setSearch] = useState("");
-  const [results, setResults] = useState<Results>({} as Results);
+  const [results, setResults] = useState<Results>({
+    totalPrice: 0,
+    data: []
+  });
 
   async function handleSearch(event: FormEvent) {
     event.preventDefault();
