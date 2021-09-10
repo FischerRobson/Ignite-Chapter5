@@ -1,4 +1,5 @@
 import { ProductItem } from "./ProductItem";
+import { AutoSizer, List, ListRowRenderer } from "react-virtualized";
 
 interface SearchResultProps {
   results: Array<{
@@ -20,11 +21,22 @@ export function SearchResults({ results, onAddToWishList, totalPrice }: SearchRe
   //   }, 0);
   // }, [results]);
 
+  const rowRender: ListRowRenderer = ({ index, key, style }) => {
+    return (
+      <div key={key} style={style}>
+        <ProductItem
+          onAddToWishList={onAddToWishList}
+          product={results[index]}
+        />
+      </div>
+    )
+  }
+
   return (
     <div>
       <h2>{totalPrice}</h2>
 
-      {results.map(product => {
+      {/* {results.map(product => {
         return (
           <ProductItem
             key={product.id}
@@ -32,7 +44,17 @@ export function SearchResults({ results, onAddToWishList, totalPrice }: SearchRe
             product={product}
           />
         )
-      })}
+      })} */}
+
+      <List
+        height={300}
+        rowHeight={300}
+        width={900}
+        overscanRowCount={5}
+        rowCount={results.length}
+        rowRenderer={rowRender}
+      />
+
     </div>
   )
 }
