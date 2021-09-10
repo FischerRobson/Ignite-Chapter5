@@ -8,7 +8,8 @@ const AddProductToWishList = dynamic<AddProductToWishListProps>(() => {
   return import('./AddProductToWishList').then(mod => mod.AddProductToWishList);
 }, {
   loading: () => <span>Carregando...</span>
-})
+});
+import lodash from "lodash";
 
 interface ProductItemProps {
   product: {
@@ -44,7 +45,7 @@ function ProductItemComponent({ product, onAddToWishList }: ProductItemProps) {
 }
 
 export const ProductItem = memo(ProductItemComponent, (prevProps, nextProps) => {
-  return Object.is(prevProps.product, nextProps.product);
+  return lodash.isEqual(prevProps.product, nextProps.product);
 });
 
 // MEMO: Pure Functional Components, Renders Too Often, Re-renders with same props, Medium to big size
